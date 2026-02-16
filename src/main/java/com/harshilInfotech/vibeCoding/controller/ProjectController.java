@@ -1,8 +1,10 @@
 package com.harshilInfotech.vibeCoding.controller;
 
+import com.harshilInfotech.vibeCoding.dto.deploy.DeployResponse;
 import com.harshilInfotech.vibeCoding.dto.project.ProjectRequest;
 import com.harshilInfotech.vibeCoding.dto.project.ProjectResponse;
 import com.harshilInfotech.vibeCoding.dto.project.ProjectSummaryResponse;
+import com.harshilInfotech.vibeCoding.service.DeploymentService;
 import com.harshilInfotech.vibeCoding.service.ProjectService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ import java.util.List;
 public class ProjectController {
 
     private final ProjectService projectService;
+    private final DeploymentService deploymentService;
 
     @GetMapping
     public ResponseEntity<List<ProjectSummaryResponse>> getMyProjects() {
@@ -43,6 +46,11 @@ public class ProjectController {
     public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
         projectService.softDelete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{id}/deploy")
+    public ResponseEntity<DeployResponse> deployProject(@PathVariable Long id) {
+        return ResponseEntity.ok(deploymentService.deploy(id));
     }
 
 }
