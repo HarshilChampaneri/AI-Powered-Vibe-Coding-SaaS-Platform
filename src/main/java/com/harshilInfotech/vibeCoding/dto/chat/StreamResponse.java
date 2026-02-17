@@ -1,6 +1,3 @@
 package com.harshilInfotech.vibeCoding.dto.chat;
 
-public record StreamResponse(
-        String text
-) {
-}
+public record StreamResponse(String text) {}

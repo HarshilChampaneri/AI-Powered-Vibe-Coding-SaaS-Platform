@@ -10,10 +10,10 @@ import java.time.Instant;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Builder
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "project_members")
 public class ProjectMember {
 
@@ -34,4 +34,5 @@ public class ProjectMember {
 
     Instant invitedAt;
     Instant acceptedAt;
+
 }

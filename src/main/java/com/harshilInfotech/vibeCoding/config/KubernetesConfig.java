@@ -12,5 +12,4 @@ public class KubernetesConfig {
     public KubernetesClient kubernetesClient() {
         return new KubernetesClientBuilder().build();
     }
-
 }

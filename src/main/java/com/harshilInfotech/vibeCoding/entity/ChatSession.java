@@ -11,9 +11,7 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "chat_sessions")
-@Getter
-@Setter
-@NoArgsConstructor
+@Getter @Setter @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -39,6 +37,5 @@ public class ChatSession {
     @UpdateTimestamp
     Instant updatedAt;
 
-    Instant deletedAt; // -- soft delete --
-
+    Instant deletedAt; // soft delete
 }

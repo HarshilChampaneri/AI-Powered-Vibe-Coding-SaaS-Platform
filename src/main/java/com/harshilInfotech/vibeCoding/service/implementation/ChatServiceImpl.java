@@ -27,16 +27,14 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public List<ChatResponse> getProjectChatHistory(Long projectId) {
-
         Long userId = authUtil.getCurrentUserId();
 
         ChatSession chatSession = chatSessionRepository.getReferenceById(
-                new ChatSessionId(userId, projectId)
+                new ChatSessionId(projectId, userId)
         );
 
         List<ChatMessage> chatMessageList = chatMessageRepository.findByChatSession(chatSession);
 
         return chatMapper.fromListOfChatMessage(chatMessageList);
-
     }
 }

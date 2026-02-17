@@ -8,5 +8,4 @@ public record FileNode(
     public String toString() {
         return path;
     }
-
 }

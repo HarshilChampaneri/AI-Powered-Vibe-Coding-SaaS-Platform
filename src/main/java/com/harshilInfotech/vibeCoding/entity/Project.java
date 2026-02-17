@@ -11,16 +11,16 @@ import java.time.Instant;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Builder
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "projects",
-    indexes = {
-        @Index(name = "idx_projects_updated_at_desc", columnList = "updated_at DESC, deleted_at"),
-        @Index(name = "idx_projects_deleted_at_updated_at_desc", columnList = "deleted_at, updated_at DESC"),
-        @Index(name = "idx_project_deleted_at", columnList = "deleted_at")
-    }
+        indexes = {
+                @Index(name = "idx_projects_updated_at_desc", columnList = "updated_at DESC, deleted_at"),
+                @Index(name = "idx_projects_deleted_at_updated_at_desc", columnList = "deleted_at, updated_at DESC"),
+                @Index(name = "idx_project_deleted_at", columnList = "deleted_at")
+        }
 )
 public class Project {
 
@@ -39,6 +39,5 @@ public class Project {
     @UpdateTimestamp
     Instant updatedAt;
 
-    Instant deletedAt; // TODO: Soft Delete Entity
-
+    Instant deletedAt; //soft delete
 }

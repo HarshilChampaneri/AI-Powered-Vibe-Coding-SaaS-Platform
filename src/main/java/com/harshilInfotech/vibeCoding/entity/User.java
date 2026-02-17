@@ -15,15 +15,14 @@ import java.util.List;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Builder
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Table(name = "users")
 public class User implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     String username;
@@ -39,7 +38,7 @@ public class User implements UserDetails {
     @UpdateTimestamp
     Instant updatedAt;
 
-    Instant deletedAt; // safe delete. Not deleting user actually from the database. Just getting rid of deleted User.
+    Instant deletedAt; //soft delete
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

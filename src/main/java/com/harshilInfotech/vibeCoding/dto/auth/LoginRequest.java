@@ -10,7 +10,7 @@ public record LoginRequest(
         @Email(message = "Please enter the valid email")
         String username,
 
-        @Size(min = 4, message = "Minimum 4 characters are required")
+        @Size(min = 4, max = 50, message = "Minimum 4 and Maximum 50 characters are required")
         String password
 ) {
 }

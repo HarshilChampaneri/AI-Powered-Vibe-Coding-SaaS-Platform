@@ -8,18 +8,17 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 
-@Getter
-@Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "project_files")
-@Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ProjectFile {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,5 +35,4 @@ public class ProjectFile {
 
     @UpdateTimestamp
     Instant updatedAt;
-
 }

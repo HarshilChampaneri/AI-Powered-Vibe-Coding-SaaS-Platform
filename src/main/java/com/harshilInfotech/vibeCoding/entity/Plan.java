@@ -23,9 +23,8 @@ public class Plan {
 
     Integer maxProjects;
     Integer maxTokensPerDay;
-    Integer maxPreviews; // maximum number of projects a user can preview simultaneously.
-    Boolean unlimitedAi; // unlimited access to LLM, Ignore max tokens per day if true.
+    Integer maxPreviews; //max number of previews allowed per plan
+    Boolean unlimitedAi; //unlimited access to LLM, ignore maxTokensPerDay if true
 
     Boolean active;
-
 }

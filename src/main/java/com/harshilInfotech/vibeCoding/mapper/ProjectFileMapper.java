@@ -10,5 +10,4 @@ import java.util.List;
 public interface ProjectFileMapper {
 
     List<FileNode> toListOfFileNode(List<ProjectFile> projectFileList);
-
 }

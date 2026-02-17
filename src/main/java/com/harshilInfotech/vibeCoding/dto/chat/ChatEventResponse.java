@@ -5,7 +5,6 @@ import com.harshilInfotech.vibeCoding.enums.ChatEventType;
 
 public record ChatEventResponse(
         Long id,
-        ChatMessage chatMessage,
         ChatEventType type,
         Integer sequenceOrder,
         String content,

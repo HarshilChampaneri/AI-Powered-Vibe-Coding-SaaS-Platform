@@ -19,9 +19,9 @@ public class LlmResponseParser {
 
     /**
      * Regex Breakdown:
-     * Group 1: opening Tag (<tag ...></tag>)
-     * Group 2: Tag Name (message/file/tool)
-     * Group 3: Attributes part (e.g., ' path="foo"' or ' args="a, b"')
+     * Group 1: Opening Tag (<tag ...>)
+     * Group 2: Tag Name (message|file|tool)
+     * Group 3: Attributes part (e.g., ' path="foo"' or ' args="a,b"')
      * Group 4: Content (The stuff inside)
      * Group 5: Closing Tag (</tag>)
      */
@@ -36,20 +36,7 @@ public class LlmResponseParser {
             "(path|args)=\"([^\"]+)\""
     );
 
-    private Map<String, String> extractAttributes(String attributeString) {
-        Map<String, String> attributes = new HashMap<>();
-        if (attributeString == null) return attributes;
-
-        Matcher matcher = ATTRIBUTE_PATTERN.matcher(attributeString);
-        while (matcher.find()) {
-            attributes.put(matcher.group(1), matcher.group(2));
-        }
-
-        return attributes;
-    }
-
     public List<ChatEvent> parseChatEvents(String fullResponse, ChatMessage parentMessage) {
-
         List<ChatEvent> events = new ArrayList<>();
         int orderCounter = 1;
 
@@ -77,18 +64,26 @@ public class LlmResponseParser {
                 }
                 case "tool" -> {
                     builder.type(ChatEventType.TOOL_LOG);
-                    builder.metadata(attrMap.get("args"));
+                    builder.metadata(attrMap.get("args")); // Store raw file list in metadata
                 }
-                default -> {
-                    continue;
-                }
-
+                default -> { continue; }
             }
 
             events.add(builder.build());
         }
 
         return events;
+    }
+
+    private Map<String, String> extractAttributes(String attributeString) {
+        Map<String, String> attributes = new HashMap<>();
+        if (attributeString == null) return attributes;
+
+        Matcher matcher = ATTRIBUTE_PATTERN.matcher(attributeString);
+        while (matcher.find()) {
+            attributes.put(matcher.group(1), matcher.group(2));
+        }
+        return attributes;
     }
 
 }

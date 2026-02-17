@@ -13,5 +13,4 @@ public interface ProjectFileRepository extends JpaRepository<ProjectFile, Long> 
     Optional<ProjectFile> findByProjectIdAndPath(Long projectId, String cleanPath);
 
     List<ProjectFile> findByProjectId(Long projectId);
-
 }

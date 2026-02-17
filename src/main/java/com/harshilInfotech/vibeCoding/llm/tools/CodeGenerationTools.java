@@ -10,40 +10,36 @@ import org.springframework.ai.tool.annotation.ToolParam;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
 @RequiredArgsConstructor
+@Slf4j
 public class CodeGenerationTools {
 
     private final ProjectFileService projectFileService;
     private final Long projectId;
 
-    @Tool(
-            name = "read_files",
-            description = "Read the content of files. Only input the file names present inside the FILE_TREE. DO NOT input any path which is not present under the FILE_TREE."
-    )
+    @Tool(name = "read_files",
+            description = "Read the content of files. Only input the file names present inside the FILE_TREE. DO NOT input any path which is not present under the FILE_TREE.")
     public List<String> readFiles(
-            @ToolParam(
-                    description = "List of relative paths (e.g., ['src/App.tsx'])"
-            )
+            @ToolParam(description = "List of relative paths (e.g., ['src/App.tsx'])")
             List<String> paths
     ) {
 
         List<String> result = new ArrayList<>();
 
-        for (String path : paths) {
+        for(String path: paths) {
+            String cleanPath = path.startsWith("/") ? path.substring(1) : path;
 
-            String classPath = path.startsWith("/") ? path.substring(1) : path;
-            log.info("Requested file: {}", classPath);
-            String content = projectFileService.getFileContent(projectId, classPath).content();
+            log.info("Requested file: {}", cleanPath);
+
+            String content = projectFileService.getFileContent(projectId, cleanPath).content();
 
             result.add(String.format(
                     "--- START OF FILE: %s ---\n%s\n--- END OF FILE ---",
-                    classPath, content
+                    cleanPath, content
             ));
+
         }
 
         return result;
-
     }
-
 }

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface PaymentProcessor {
 
-    CheckoutResponse createCheckoutSession(CheckoutRequest request);
+    CheckoutResponse createCheckoutSessionUrl(CheckoutRequest request);
 
     PortalResponse openCustomerPortal();
 

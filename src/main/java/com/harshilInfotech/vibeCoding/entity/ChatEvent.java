@@ -7,8 +7,8 @@ import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name = "chat_events")
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -24,7 +24,7 @@ public class ChatEvent {
     ChatMessage chatMessage;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "chat_event_type", nullable = false)
+    @Column(nullable = false)
     ChatEventType type;
 
     @Column(nullable = false)
@@ -33,7 +33,7 @@ public class ChatEvent {
     @Column(columnDefinition = "text")
     String content;
 
-    String filePath;
+    String filePath; // NULL unless FILE_EDIT
 
     @Column(columnDefinition = "text")
     String metadata;

@@ -10,5 +10,4 @@ import java.util.List;
 public interface ChatMapper {
 
     List<ChatResponse> fromListOfChatMessage(List<ChatMessage> chatMessageList);
-
 }

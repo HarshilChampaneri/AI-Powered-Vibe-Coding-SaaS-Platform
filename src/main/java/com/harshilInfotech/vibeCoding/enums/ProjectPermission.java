@@ -3,8 +3,8 @@ package com.harshilInfotech.vibeCoding.enums;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Getter
 @RequiredArgsConstructor
+@Getter
 public enum ProjectPermission {
 
     VIEW("project:view"),
@@ -13,6 +13,7 @@ public enum ProjectPermission {
 
     MANAGE_MEMBERS("project_members:manage"),
     VIEW_MEMBERS("project_members:view");
+
 
     private final String value;
 }

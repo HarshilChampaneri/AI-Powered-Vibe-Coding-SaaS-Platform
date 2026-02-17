@@ -7,12 +7,17 @@ import java.util.Set;
 
 import static com.harshilInfotech.vibeCoding.enums.ProjectPermission.*;
 
-@Getter
 @RequiredArgsConstructor
+@Getter
 public enum ProjectRole {
-    EDITOR(Set.of(VIEW, EDIT, DELETE, VIEW_MEMBERS)),
+
+    EDITOR(VIEW, EDIT, DELETE, VIEW_MEMBERS),
     VIEWER(Set.of(VIEW, VIEW_MEMBERS)),
     OWNER(Set.of(VIEW, EDIT, DELETE, MANAGE_MEMBERS, VIEW_MEMBERS));
+
+    ProjectRole(ProjectPermission... permissions) {
+        this.permissions = Set.of(permissions);
+    }
 
     private final Set<ProjectPermission> permissions;
 }

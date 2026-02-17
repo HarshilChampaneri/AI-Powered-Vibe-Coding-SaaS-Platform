@@ -11,11 +11,11 @@ import java.time.Instant;
 
 @Getter
 @Setter
-@Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Subscription {
 
     @Id
@@ -33,7 +33,7 @@ public class Subscription {
     @Enumerated(value = EnumType.STRING)
     SubscriptionStatus status;
 
-    String stripeSubscriptionId; // can be renamed to gatewaySubscriptionId;
+    String stripeSubscriptionId; //can be renamed to gatewaySubscriptionId
 
     Instant currentPeriodStart;
     Instant currentPeriodEnd;
@@ -44,5 +44,4 @@ public class Subscription {
 
     @UpdateTimestamp
     Instant updatedAt;
-
 }

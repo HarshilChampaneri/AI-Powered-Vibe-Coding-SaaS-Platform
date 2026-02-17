@@ -12,9 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
+@Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
     UserRepository userRepository;
@@ -24,9 +24,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return null;
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new ResourceNotFoundException("User", username));
+        return userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User", username));
     }
 }

@@ -31,9 +31,8 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse signup(SignupRequest request) {
-
         userRepository.findByUsername(request.username()).ifPresent(user -> {
-            throw new BadRequestException("User already exists with username: " + request.username());
+            throw new BadRequestException("User already exists with username: "+request.username());
         });
 
         User user = userMapper.toEntity(request);
@@ -41,13 +40,11 @@ public class AuthServiceImpl implements AuthService {
         user = userRepository.save(user);
 
         String token = authUtil.generateAccessToken(user);
-
         return new AuthResponse(token, userMapper.toUserProfileResponse(user));
     }
 
     @Override
     public AuthResponse login(LoginRequest request) {
-
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.username(), request.password())
         );
@@ -55,7 +52,6 @@ public class AuthServiceImpl implements AuthService {
         User user = (User) authentication.getPrincipal();
 
         String token = authUtil.generateAccessToken(user);
-
         return new AuthResponse(token, userMapper.toUserProfileResponse(user));
     }
 }

@@ -51,19 +51,15 @@ public class FileTreeContextAdvisor implements StreamAdvisor {
 
         List<Message> allMessages = new ArrayList<>();
 
-        // Get file tree context
-        List<FileNode> fileTree = projectFileService.getFileTree(projectId).files();
-        String fileTreeContext = "\n\n ---- FILE_TREE ----\n" + fileTree.toString();
-
-        // Create ONLY ONE system message by merging original with file tree
+        // Add original system message
         if (systemMessage != null) {
-            String enhancedSystemContent = systemMessage.getText() + fileTreeContext;
-            allMessages.add(new SystemMessage(enhancedSystemContent));
-        } else {
-            allMessages.add(new SystemMessage(fileTreeContext));
+            allMessages.add(systemMessage);
         }
 
-        // Add all user messages
+        List<FileNode> fileTree = projectFileService.getFileTree(projectId).files();
+        String fileTreeContext = "\n\n ---- FILE_TREE ----\n"+fileTree.toString();
+        allMessages.add(new SystemMessage(fileTreeContext));
+
         allMessages.addAll(userMessages);
 
         return request
@@ -71,6 +67,7 @@ public class FileTreeContextAdvisor implements StreamAdvisor {
                 .prompt(new Prompt(allMessages, request.prompt().getOptions()))
                 .build();
     }
+
 
     @Override
     public String getName() {

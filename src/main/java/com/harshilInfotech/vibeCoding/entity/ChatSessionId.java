@@ -7,13 +7,11 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @ToString
-@NoArgsConstructor
-@AllArgsConstructor
 public class ChatSessionId implements Serializable {
-
     Long projectId;
     Long userId;
-
 }

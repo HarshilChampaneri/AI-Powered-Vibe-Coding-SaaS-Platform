@@ -15,5 +15,4 @@ public class PaymentConfig {
     public void init() {
         Stripe.apiKey = stripeSecretKey;
     }
-
 }
