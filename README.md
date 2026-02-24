@@ -83,10 +83,10 @@ A modern React + TypeScript frontend for interacting with the platform.
 
 | Layer | Technologies |
 |---|---|
-| **Backend** | Java 21, Spring Boot 3, Spring AI, Spring Security, Spring Cloud |
+| **Backend** | Java 21, Spring Boot 4, Spring AI, Spring Security, Spring Cloud |
 | **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui |
 | **Database** | PostgreSQL, Redis |
-| **AI** | OpenAI (via Spring AI) |
+| **AI** | GeminiAI (via Spring AI) |
 | **Payments** | Stripe |
 | **Storage** | MinIO (S3-compatible) |
 | **Containerization** | Docker, Docker Compose |
