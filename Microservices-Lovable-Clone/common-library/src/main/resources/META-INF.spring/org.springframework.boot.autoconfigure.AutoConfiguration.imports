@@ -1,0 +1,2 @@
+com.lovable_clone.common_library.security.SharedSecurityAutoConfiguration
+com.lovable_clone.common_library.error.SharedExceptionAutoConfiguration
