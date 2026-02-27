@@ -1,3 +1,12 @@
 spring:
   application:
     name: config-service
+
+  cloud:
+    config.server.git:
+      uri: https://github.com/HarshilChampaneri/AI-Powered-Vibe-Coding-SaaS-Platform
+      username: HarshilChampaneri
+      password: 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
+      default-label: main
+
+server.port: 8888

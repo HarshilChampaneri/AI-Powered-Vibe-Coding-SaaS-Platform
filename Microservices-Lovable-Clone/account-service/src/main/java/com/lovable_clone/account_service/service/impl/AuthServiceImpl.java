@@ -9,12 +9,14 @@ import com.lovable_clone.account_service.repository.UserRepository;
 import com.lovable_clone.account_service.service.AuthService;
 import com.lovable_clone.common_library.error.BadRequestException;
 import com.lovable_clone.common_library.security.AuthUtil;
+import com.lovable_clone.common_library.security.JwtUserPrincipal;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +51,10 @@ public class AuthServiceImpl implements AuthService {
                 new UsernamePasswordAuthenticationToken(request.username(), request.password())
         );
 
-        User user = (User) authentication.getPrincipal();
+        JwtUserPrincipal principal = (JwtUserPrincipal) authentication.getPrincipal(); // ✅ correct cast
+
+        User user = userRepository.findByUsername(principal.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         String token = authUtil.generateAccessToken(userMapper.toUserDto(user));
         return new AuthResponse(token, userMapper.toUserProfileResponse(user));

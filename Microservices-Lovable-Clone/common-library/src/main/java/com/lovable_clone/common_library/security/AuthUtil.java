@@ -4,6 +4,8 @@ import com.lovable_clone.common_library.dto.UserDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.core.Authentication;
@@ -15,11 +17,17 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 
+@Slf4j
 @Component
 public class AuthUtil {
 
     @Value("${jwt.secret-key}")
     private String jwtSecretKey;
+
+    @PostConstruct
+    public void init() {
+        log.info("JWT Secret Key loaded: {}", jwtSecretKey != null ? "YES (length=" + jwtSecretKey.length() + ")" : "NULL");
+    }
 
     private SecretKey getSecretKey() {
         return Keys.hmacShaKeyFor(jwtSecretKey.getBytes(StandardCharsets.UTF_8));

@@ -15,7 +15,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import java.io.IOException;
 
 @Slf4j
-@Component
+//@Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -33,7 +33,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 return;
             }
 
-            String jwtToken = requestHeaderToken.split("Bearer ")[1];
+            String[] parts = requestHeaderToken.split(" ");
+            if (parts.length != 2 || parts[1].isBlank()) {
+                filterChain.doFilter(request, response);
+                return;
+            }
+            String jwtToken = parts[1];
 
             JwtUserPrincipal user = authUtil.verifyAccessToken(jwtToken);
             if (user != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -51,9 +56,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        String path = request.getRequestURI();
-        return path.startsWith("/api/auth/") ||
-                path.startsWith("/api/webhooks/") ||
+        String path = request.getServletPath();
+        return path.startsWith("/auth/") ||
+                path.startsWith("/webhooks/") ||
                 path.startsWith("/v3/api-docs") ||
                 path.startsWith("/swagger-ui/") ||
                 path.startsWith("/swagger-ui.html") ||
