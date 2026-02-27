@@ -10,4 +10,4 @@ spring:
           predicates:
             - Path=/api/v1/account/**
           filters:
-            - StripPrefix=3
+            - StripPrefix=2
