@@ -8,6 +8,6 @@ spring:
         - id: account-service
           uri: lb://account-service
           predicates:
-            - Path=/api/v1/account/*
+            - Path=/api/v1/account/**
           filters:
-            - StripPrefix=2
+            - StripPrefix=3
