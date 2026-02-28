@@ -5,12 +5,14 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/AI-Based-Vibe-Coding-Platform/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices-Lovable-Clone/account-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices-Lovable-Clone/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices-Lovable-Clone/common-library/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices-Lovable-Clone/config-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices-Lovable-Clone/discovery-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices-Lovable-Clone/intelligence-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Microservices-Lovable-Clone/workspace-service/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/AI-Based-Vibe-Coding-Platform/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="25" project-jdk-type="JavaSDK">

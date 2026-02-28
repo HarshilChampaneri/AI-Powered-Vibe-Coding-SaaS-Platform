@@ -4,9 +4,9 @@ spring:
 
   cloud:
     config.server.git:
-      uri: https://github.com/HarshilChampaneri/AI-Powered-Vibe-Coding-SaaS-Platform
+      uri: https://github.com/HarshilChampaneri/lovable-clone-config-server
       username: HarshilChampaneri
-      password: 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
+      password: ${GITHUB_PERSONAL_ACCESS_TOKEN}
       default-label: main
 
 server.port: 8888

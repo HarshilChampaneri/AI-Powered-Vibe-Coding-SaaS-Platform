@@ -2,5 +2,12 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/AI-Based-Vibe-Coding-Platform/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microservices-Lovable-Clone/account-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microservices-Lovable-Clone/api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microservices-Lovable-Clone/common-library/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microservices-Lovable-Clone/config-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microservices-Lovable-Clone/discovery-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microservices-Lovable-Clone/intelligence-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Microservices-Lovable-Clone/workspace-service/src/main/java" charset="UTF-8" />
   </component>
 </project>
